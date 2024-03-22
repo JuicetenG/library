@@ -1,0 +1,74 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+h1 {
+  padding-top: 1em;
+  padding-bottom: .25em;
+  text-align: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-container {
+  margin-bottom: 2em;
+}
+
+#addButton {
+  display: block;
+  margin: auto;
+  margin-bottom: 2em;
+}
+
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  margin: auto;
+}
+
+.title-column, .author-column {
+  width: 12em;
+}
+
+.pages-column, .read-column {
+  width: 4em;
+}
+
+.delete-column { 
+  width: 1.5em;
+}
+
+#delete {
+  width: 20px;
+  background-color: maroon;
+  border: none;
+  border-radius: 4px;
+  height: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  color:white;
+  padding-bottom: 1px;
+  margin-left: .15em;
+}
+
+tr, :nth-child(5) {
+  border: none;
+}
+
+td:nth-of-type(1), td:nth-of-type(2) {
+  padding-left: 2px;
+}
+
+td:nth-of-type(3), td:nth-of-type(4) {
+  text-align: center;
+}
+
+
