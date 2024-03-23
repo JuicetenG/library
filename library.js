@@ -1,10 +1,9 @@
-let titleInput = null;
-let authorInput = null;
-let pagesInput = null;
-let readInput = null;
-
 const table = document.querySelector('#table');
 const books = [];
+const booksTracker = [];
+
+const addButton = document.querySelector('#addButton');
+const submitButton = document.querySelector('#submitButton');
 
 function Book(title, author, pageCount, readStatus) {
   this.title = title;
@@ -24,7 +23,10 @@ function addBook(title, author, pageCount, readStatus) {
 }
 
 function displayBooks() {
-  books.forEach((book) => {    
+  for(let i = 0; i < books.length; i++) {
+    if(booksTracker.includes(books[i].title)){
+      continue;
+    }
     let bookRow = document.createElement('tr');
     let bookTitle = document.createElement('td');
     let bookAuthor = document.createElement('td');
@@ -32,10 +34,10 @@ function displayBooks() {
     let bookRead = document.createElement('td');
     let bookDelete = document.createElement('button');
 
-    bookTitle.textContent = book.title;
-    bookAuthor.textContent = book.author;
-    bookPages.textContent = book.pages;
-    bookRead.textContent = book.readStatus;
+    bookTitle.textContent = books[i].title;
+    bookAuthor.textContent = books[i].author;
+    bookPages.textContent = books[i].pages;
+    bookRead.textContent = books[i].readStatus;
     bookDelete.textContent = 'x';
 
     table.appendChild(bookRow);
@@ -46,19 +48,24 @@ function displayBooks() {
     bookRow.appendChild(bookRead);
     bookRow.appendChild(bookDelete);
     bookDelete.setAttribute('id', 'delete');
-  });
+
+    booksTracker.push(books[i].title);
+    console.log(booksTracker);
+  }
 }
 
 /////////////////////* test */////////////////////
-let testBook = new Book('test title', 'fake author', 69, 'not read');
-books.push(testBook);
+addBook('hello', 'author guy', '42069', 'nunya');
+displayBooks();
 /////////////////////* test */////////////////////
 
-
-addBook('title2', 'author2', 420, 'no');
-addBook('title3', 'author3', 42069, 'yes');
-console.log(books[0]);
-console.log(books[1]);
-console.log(books[2]);
-
-displayBooks();
+submitButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  let bookTitleField = document.querySelector('#bookTitle');
+  let authorField = document.querySelector('#bookAuthor');
+  let pagesField = document.querySelector('#bookPages');
+  let readField = document.querySelector('#bookRead');
+  addBook(bookTitleField.value, authorField.value, pagesField.value, readField.value);
+  displayBooks();
+  form.reset(); 
+});
