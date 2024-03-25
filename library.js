@@ -1,6 +1,7 @@
 const table = document.querySelector('#table');
+const addedBooks = document.querySelector('#domDiv');
 const books = [];
-const booksTracker = [];
+let booksTracker = 0;
 
 const addButton = document.querySelector('#addButton');
 const submitButton = document.querySelector('#submitButton');
@@ -10,53 +11,70 @@ function Book(title, author, pageCount, readStatus) {
   this.author = author;
   this.pages = pageCount;
   this.readStatus = readStatus;
-
-  this.info = function() {
-    return (title + ' by ' + author 
-    + ', ' + pageCount + ' pages, ' + readStatus);
-  };
 }
 
 function addBook(title, author, pageCount, readStatus) {
   let newBook = new Book(title, author, pageCount, readStatus);
   books.push(newBook);
+  displayBooks();
 }
 
 function displayBooks() {
-  for(let i = 0; i < books.length; i++) {
-    if(booksTracker.includes(books[i].title)){
+  for(let i = 0; i < books.length; i ++) {
+    if(i < booksTracker){
       continue;
     }
+    console.log(i);
+    console.log(booksTracker)
     let bookRow = document.createElement('tr');
     let bookTitle = document.createElement('td');
     let bookAuthor = document.createElement('td');
     let bookPages = document.createElement('td');
     let bookRead = document.createElement('td');
-    let bookDelete = document.createElement('button');
+    const bookDelete = document.createElement('button');
 
     bookTitle.textContent = books[i].title;
     bookAuthor.textContent = books[i].author;
     bookPages.textContent = books[i].pages;
     bookRead.textContent = books[i].readStatus;
     bookDelete.textContent = 'x';
+    bookDelete.dataset.indexNumber = i;
 
-    table.appendChild(bookRow);
-    table.classList.add('book');
+    books[i].removeCode = i;
+   
     bookRow.appendChild(bookTitle);
     bookRow.appendChild(bookAuthor);
     bookRow.appendChild(bookPages);
     bookRow.appendChild(bookRead);
     bookRow.appendChild(bookDelete);
-    bookDelete.setAttribute('id', 'delete');
+    table.appendChild(bookRow);
 
-    booksTracker.push(books[i].title);
-    console.log(booksTracker);
+    bookDelete.addEventListener('click', () => {
+      function findBook() {
+        for(let i = 0; i < books.length; i++) {
+          if(books[i].removeCode === i)
+            return i;
+        } 
+      }
+      books.splice(findBook(), 1);
+      table.removeChild(bookRow);
+      booksTracker = books.length;
+      console.log(books);
+      console.log(i);
+      console.log(booksTracker);
+    });
+
+
+    bookDelete.setAttribute('id', 'delete');
+    booksTracker++;
   }
 }
 
 /////////////////////* test */////////////////////
 addBook('hello', 'author guy', '42069', 'nunya');
-displayBooks();
+addBook('hello', 'author guy', '42069', 'nunya');
+addBook('hello', 'author guy', '42069', 'nunya');
+addBook('hello', 'author guy', '42069', 'nunya');
 /////////////////////* test */////////////////////
 
 submitButton.addEventListener('click', (e) => {
@@ -66,6 +84,7 @@ submitButton.addEventListener('click', (e) => {
   let pagesField = document.querySelector('#bookPages');
   let readField = document.querySelector('#bookRead');
   addBook(bookTitleField.value, authorField.value, pagesField.value, readField.value);
-  displayBooks();
-  form.reset(); 
+  console.log(books);
+  console.log(booksTracker);
 });
+
