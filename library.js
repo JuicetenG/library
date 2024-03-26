@@ -1,10 +1,10 @@
 const table = document.querySelector('#table');
-const addedBooks = document.querySelector('#domDiv');
 const books = [];
-let booksTracker = 0;
 
 const addButton = document.querySelector('#addButton');
 const submitButton = document.querySelector('#submitButton');
+
+const form = document.querySelector('#formModal');
 
 function Book(title, author, pageCount, readStatus) {
   this.title = title;
@@ -24,42 +24,36 @@ function displayBooks() {
   addHeaders();
 
   for(let i = 0; i < books.length; i ++) {
-
-    console.log(i);
-    console.log(booksTracker)
     let bookRow = document.createElement('tr');
+
     let bookTitle = document.createElement('td');
-    let bookAuthor = document.createElement('td');
-    let bookPages = document.createElement('td');
-    let bookRead = document.createElement('td');
-    const bookDelete = document.createElement('button');
-
     bookTitle.textContent = books[i].title;
-    bookAuthor.textContent = books[i].author;
-    bookPages.textContent = books[i].pages;
-    bookRead.textContent = books[i].readStatus;
-    bookDelete.textContent = 'x';
-    bookDelete.dataset.indexNumber = i;
-
-    books[i].removeCode = i;
-   
     bookRow.appendChild(bookTitle);
+
+    let bookAuthor = document.createElement('td');
+    bookAuthor.textContent = books[i].author;
     bookRow.appendChild(bookAuthor);
+
+    let bookPages = document.createElement('td');
+    bookPages.textContent = books[i].pages;
     bookRow.appendChild(bookPages);
+
+    let bookRead = document.createElement('td');
+    bookRead.textContent = books[i].readStatus;
     bookRow.appendChild(bookRead);
+
+    const bookDelete = document.createElement('button');
+    bookDelete.textContent = 'x';
+    bookDelete.setAttribute('id', 'delete');
     bookRow.appendChild(bookDelete);
-    table.appendChild(bookRow);
 
     bookDelete.addEventListener('click', () => {
       books.splice(i, 1);
       displayBooks();
-      booksTracker = books.length;
-      console.log(books);
-      console.log(i);
-      console.log(booksTracker);
+      console.log(books)
     });
 
-    bookDelete.setAttribute('id', 'delete');
+    table.appendChild(bookRow);
   }
 }
 
@@ -95,10 +89,10 @@ function addHeaders() {
 }
 
 /////////////////////* test */////////////////////
-addBook('1', 'author guy', '42069', 'nunya');
-addBook('2', 'author guy', '42069', 'nunya');
-addBook('3', 'author guy', '42069', 'nunya');
-addBook('4', 'author guy', '42069', 'nunya');
+addBook('1', 'author guy', '42069', 'yes');
+addBook('2', 'author guy', '42069', 'yes');
+addBook('3', 'author guy', '42069', 'no');
+addBook('4', 'author guy', '42069', 'yes');
 /////////////////////* test */////////////////////
 
 submitButton.addEventListener('click', (e) => {
@@ -108,7 +102,10 @@ submitButton.addEventListener('click', (e) => {
   let pagesField = document.querySelector('#bookPages');
   let readField = document.querySelector('#bookRead');
   addBook(bookTitleField.value, authorField.value, pagesField.value, readField.value);
-  console.log(books);
-  console.log(booksTracker);
+  form.close();
+});
+
+addButton.addEventListener('click', () => {
+  form.showModal();
 });
 
