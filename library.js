@@ -20,10 +20,11 @@ function addBook(title, author, pageCount, readStatus) {
 }
 
 function displayBooks() {
+  table.innerHTML = '';
+  addHeaders();
+
   for(let i = 0; i < books.length; i ++) {
-    if(i < booksTracker){
-      continue;
-    }
+
     console.log(i);
     console.log(booksTracker)
     let bookRow = document.createElement('tr');
@@ -50,31 +51,54 @@ function displayBooks() {
     table.appendChild(bookRow);
 
     bookDelete.addEventListener('click', () => {
-      function findBook() {
-        for(let i = 0; i < books.length; i++) {
-          if(books[i].removeCode === i)
-            return i;
-        } 
-      }
-      books.splice(findBook(), 1);
-      table.removeChild(bookRow);
+      books.splice(i, 1);
+      displayBooks();
       booksTracker = books.length;
       console.log(books);
       console.log(i);
       console.log(booksTracker);
     });
 
-
     bookDelete.setAttribute('id', 'delete');
-    booksTracker++;
   }
 }
 
+function addHeaders() {
+  const headersRow = document.createElement('tr');
+  
+  const titleHeader = document.createElement('th');
+  titleHeader.textContent = 'Title';
+  titleHeader.classList.add('title-column');
+  headersRow.appendChild(titleHeader);
+
+  const authorHeader = document.createElement('th');
+  authorHeader.textContent = 'Author';
+  authorHeader.classList.add('author-column');
+  headersRow.appendChild(authorHeader);
+  
+  const pagesHeader = document.createElement('th');
+  pagesHeader.textContent = 'Pages';
+  pagesHeader.classList.add('pages-column');
+  headersRow.appendChild(pagesHeader);
+
+  const readHeader = document.createElement('th');
+  readHeader.textContent = 'Read';
+  readHeader.classList.add('read-column');
+  headersRow.appendChild(readHeader);
+
+  const deleteHeader = document.createElement('th');
+  deleteHeader.textContent = '';
+  deleteHeader.classList.add('delete-column');
+  headersRow.appendChild(deleteHeader);
+
+  table.appendChild(headersRow);
+}
+
 /////////////////////* test */////////////////////
-addBook('hello', 'author guy', '42069', 'nunya');
-addBook('hello', 'author guy', '42069', 'nunya');
-addBook('hello', 'author guy', '42069', 'nunya');
-addBook('hello', 'author guy', '42069', 'nunya');
+addBook('1', 'author guy', '42069', 'nunya');
+addBook('2', 'author guy', '42069', 'nunya');
+addBook('3', 'author guy', '42069', 'nunya');
+addBook('4', 'author guy', '42069', 'nunya');
 /////////////////////* test */////////////////////
 
 submitButton.addEventListener('click', (e) => {
