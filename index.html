@@ -16,25 +16,27 @@
   </div> 
   <dialog id="formModal">
     <div class="form-container">
-      <form action="" method="post">
-        <div class="form-item">
+      <form action="" method="post" id="bookForm">
+        <div class="form-item>
           <label for="bookTitle">Title:</label>
           <input type="text" id="bookTitle" name="book-title">
         </div>
-        <div class="form-item">
+        <div class="form-item>
           <label for="bookAuthor">Author:</label>
           <input type="text" id="bookAuthor" name="book-author">
-       </div>
+        </div>
+        <div class="form-item>
+          <label for="bookPages">Pages:</label>
+          <input type="text" id="bookPages" name="book-pages">
+        </div>
        <div class="form-item">
-        <label for="bookPages">Pages:</label>
-        <input type="text" id="bookPages" name="book-pages">
+        <label for="bookRead" class="book-read-label">Finished reading?</label>
+          <select id="bookRead" name="book-read">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
        </div>
-       <div class="form-item">
-        <label for="bookRead">Read:</label>
-        <input type="text" id="bookRead" name="book-read">
-       </div>
-       <div class="form-buttons">
-        <button id="closeButton">Close</button>
+       <div>
         <button type="submit" id="submitButton">Submit</button>
        </div>
       </form>

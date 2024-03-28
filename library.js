@@ -4,7 +4,8 @@ const books = [];
 const addButton = document.querySelector('#addButton');
 const submitButton = document.querySelector('#submitButton');
 
-const form = document.querySelector('#formModal');
+const modal = document.querySelector('#formModal');
+const form = document.querySelector('#bookForm');
 
 function Book(title, author, pageCount, readStatus) {
   this.title = title;
@@ -19,7 +20,7 @@ function addBook(title, author, pageCount, readStatus) {
   displayBooks();
 }
 
-function displayBooks() {
+const displayBooks = () => {
   table.innerHTML = '';
   addHeaders();
 
@@ -29,32 +30,52 @@ function displayBooks() {
     let bookTitle = document.createElement('td');
     bookTitle.textContent = books[i].title;
     bookRow.appendChild(bookTitle);
-
+  
     let bookAuthor = document.createElement('td');
     bookAuthor.textContent = books[i].author;
     bookRow.appendChild(bookAuthor);
-
+  
     let bookPages = document.createElement('td');
     bookPages.textContent = books[i].pages;
     bookRow.appendChild(bookPages);
-
+  
     let bookRead = document.createElement('td');
-    bookRead.textContent = books[i].readStatus;
+    bookRead.classList.add('read-status');
+    let changeRead = document.createElement('button');
+    changeRead.textContent = books[i].readStatus;
+    bookRead.append(changeRead);
     bookRow.appendChild(bookRead);
-
-    const bookDelete = document.createElement('button');
+    
+    let deleteCell = document.createElement('td');
+    let bookDelete = document.createElement('button');
     bookDelete.textContent = 'x';
     bookDelete.setAttribute('id', 'delete');
-    bookRow.appendChild(bookDelete);
-
+    deleteCell.append(bookDelete);
+    bookRow.appendChild(deleteCell);
+  
     bookDelete.addEventListener('click', () => {
       books.splice(i, 1);
       displayBooks();
       console.log(books)
     });
-
+  
+    changeRead.addEventListener('click', () => {
+      changeRead.textContent = books[i].changeReadStatus();
+      console.log(books[i]);
+    });
+  
     table.appendChild(bookRow);
   }
+}
+
+Book.prototype.changeReadStatus = function() {
+  if(this.readStatus === 'yes') {
+    this.readStatus = 'no';
+    return this.readStatus = 'no';
+  } else {
+    this.readStatus = 'yes';
+    return 'yes';
+  } 
 }
 
 function addHeaders() {
@@ -101,11 +122,14 @@ submitButton.addEventListener('click', (e) => {
   let authorField = document.querySelector('#bookAuthor');
   let pagesField = document.querySelector('#bookPages');
   let readField = document.querySelector('#bookRead');
+
   addBook(bookTitleField.value, authorField.value, pagesField.value, readField.value);
-  form.close();
+  modal.close();
+  form.reset();
+  console.log(books);
 });
 
 addButton.addEventListener('click', () => {
-  form.showModal();
+  modal.showModal();
 });
 
