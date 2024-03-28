@@ -3,6 +3,7 @@ const books = [];
 
 const addButton = document.querySelector('#addButton');
 const submitButton = document.querySelector('#submitButton');
+const closeButton = document.querySelector('#closeButton');
 
 const modal = document.querySelector('#formModal');
 const form = document.querySelector('#bookForm');
@@ -116,6 +117,10 @@ addBook('3', 'author guy', '42069', 'no');
 addBook('4', 'author guy', '42069', 'yes');
 /////////////////////* test */////////////////////
 
+addButton.addEventListener('click', () => {
+  modal.showModal();
+});
+
 submitButton.addEventListener('click', (e) => {
   e.preventDefault();
   let bookTitleField = document.querySelector('#bookTitle');
@@ -129,7 +134,9 @@ submitButton.addEventListener('click', (e) => {
   console.log(books);
 });
 
-addButton.addEventListener('click', () => {
-  modal.showModal();
+closeButton.addEventListener('click', () => {
+  modal.close();
+  form.reset();
 });
+
 
