@@ -71,6 +71,24 @@ table {
   padding-bottom: 2px;
   color:white;
   margin-left: 4px; 
+  cursor: pointer;
+}
+
+.read-status {
+  width: 40px;
+  height: 24px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.read-status-yes {
+  background-color: lightgreen;
+}
+
+.read-status-no {
+  background-color: lightcoral;
 }
 
 td:nth-of-type(1), td:nth-of-type(2) {
@@ -83,7 +101,12 @@ td:nth-of-type(3), td:nth-of-type(4) {
   text-align: center;
 }
 
+/* dialog[open] {
+  display: flex;
+} */
+
 #formModal {
+  display: flex;
   margin: auto;
   margin-top: 30vh;
   height: 350px;
@@ -93,16 +116,55 @@ td:nth-of-type(3), td:nth-of-type(4) {
 }
 
 .form-container {
-  display: flex;
-  flex-direction: column;
   margin: auto;
   text-align: center;
-  width: 250px;
 }
 
+.form-item {
+  display: flex;
+  justify-content: space-between;
+  width: 230px;
+  margin: 20px 0px;
+}
 
+label {
+  display: flex;
+  width: 50px;
+  justify-content: flex-end;
+}
 
+.book-read-label {
+  width: 130px;
+  padding-right: 12px; 
+}
 
+#readDropDown {
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#submitButton {
+  margin-bottom: 10px;
+}
+
+#cancelButton {
+
+}
+
+.invalid-input {
+  border: 2px solid red;
+  border-radius: 4px;
+}
+
+input:valid {
+  border: 2px solid green;
+  border-radius: 4px;
+}
 
 
 

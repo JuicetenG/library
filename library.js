@@ -41,8 +41,9 @@ const displayBooks = () => {
     bookRow.appendChild(bookPages);
   
     let bookRead = document.createElement('td');
-    bookRead.classList.add('read-status');
     let changeRead = document.createElement('button');
+    changeRead.classList.add('read-status');
+    changeRead.classList.add(checkReadValue());
     changeRead.textContent = books[i].readStatus;
     bookRead.append(changeRead);
     bookRow.appendChild(bookRead);
@@ -62,13 +63,32 @@ const displayBooks = () => {
   
     changeRead.addEventListener('click', () => {
       changeRead.textContent = books[i].changeReadStatus();
+      checkReadValue();
       console.log(books[i]);
     });
-  
+    
+    function checkReadValue() {
+      if(books[i].readStatus === 'yes') {
+        changeRead.classList.add('read-status-yes');
+        changeRead.classList.remove('read-status-no');
+      } else {
+        changeRead.classList.add('read-status-no');
+        changeRead.classList.remove('read-status-yes');
+      }
+    }
     table.appendChild(bookRow);
   }
 }
 
+function checkReadValue() {
+  if(books[i].readStatus === 'yes') {
+    changeRead.classList.add('read-status-yes');
+    changeRead.classList.remove('read-status-no');
+  } else {
+    changeRead.classList.add('read-status-no');
+    changeRead.classList.remove('read-status-yes');
+  }
+}
 Book.prototype.changeReadStatus = function() {
   if(this.readStatus === 'yes') {
     this.readStatus = 'no';
@@ -110,6 +130,29 @@ function addHeaders() {
   table.appendChild(headersRow);
 }
 
+function checkForm() {
+  console.log(form.checkValidity());
+  let bookTitleField = document.querySelector('#bookTitle');
+  let authorField = document.querySelector('#bookAuthor');
+  let pagesField = document.querySelector('#bookPages');
+  let readField = document.querySelector('#bookRead');
+
+  if(form.checkValidity() === true) {
+    addBook(bookTitleField.value, authorField.value, pagesField.value, readField.value);
+    modal.close();
+    form.reset();
+    console.log(books);
+    bookTitleField.classList.remove('invalid-input');
+    authorField.classList.remove('invalid-input');
+    pagesField.classList.remove('invalid-input');
+  } else {
+      if (bookTitleField.value === '') bookTitleField.classList.add('invalid-input');
+      if (authorField.value === '') authorField.classList.add('invalid-input');
+      if (pagesField.value === '') pagesField.classList.add('invalid-input');
+    return;
+  }
+}
+
 /////////////////////* test */////////////////////
 addBook('1', 'author guy', '42069', 'yes');
 addBook('2', 'author guy', '42069', 'yes');
@@ -123,20 +166,11 @@ addButton.addEventListener('click', () => {
 
 submitButton.addEventListener('click', (e) => {
   e.preventDefault();
-  let bookTitleField = document.querySelector('#bookTitle');
-  let authorField = document.querySelector('#bookAuthor');
-  let pagesField = document.querySelector('#bookPages');
-  let readField = document.querySelector('#bookRead');
-
-  addBook(bookTitleField.value, authorField.value, pagesField.value, readField.value);
-  modal.close();
-  form.reset();
-  console.log(books);
+  checkForm();
 });
 
 closeButton.addEventListener('click', () => {
   modal.close();
   form.reset();
 });
-
 
