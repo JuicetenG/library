@@ -5,6 +5,11 @@ const addButton = document.querySelector('#addButton');
 const submitButton = document.querySelector('#submitButton');
 const closeButton = document.querySelector('#closeButton');
 
+let bookTitleField = document.querySelector('#bookTitle');
+let authorField = document.querySelector('#bookAuthor');
+let pagesField = document.querySelector('#bookPages');
+let readField = document.querySelector('#bookRead');
+
 const modal = document.querySelector('#formModal');
 const form = document.querySelector('#bookForm');
 
@@ -132,10 +137,6 @@ function addHeaders() {
 
 function checkForm() {
   console.log(form.checkValidity());
-  let bookTitleField = document.querySelector('#bookTitle');
-  let authorField = document.querySelector('#bookAuthor');
-  let pagesField = document.querySelector('#bookPages');
-  let readField = document.querySelector('#bookRead');
 
   if(form.checkValidity() === true) {
     addBook(bookTitleField.value, authorField.value, pagesField.value, readField.value);
@@ -154,10 +155,10 @@ function checkForm() {
 }
 
 /////////////////////* test */////////////////////
-addBook('1', 'author guy', '42069', 'yes');
-addBook('2', 'author guy', '42069', 'yes');
-addBook('3', 'author guy', '42069', 'no');
-addBook('4', 'author guy', '42069', 'yes');
+addBook('Atomic Habits', 'James Clear', '320', 'yes');
+addBook('Thinking, Fast and Slow', 'Daniel Kahneman', '499', 'yes');
+addBook('Letters to a New Developer', 'Dan Moore', '232', 'no');
+addBook('The Idea Factory', 'Jon Gertner', '422', 'yes');
 /////////////////////* test */////////////////////
 
 addButton.addEventListener('click', () => {
@@ -170,6 +171,9 @@ submitButton.addEventListener('click', (e) => {
 });
 
 closeButton.addEventListener('click', () => {
+  bookTitleField.classList.remove('invalid-input');
+  authorField.classList.remove('invalid-input');
+  pagesField.classList.remove('invalid-input');
   modal.close();
   form.reset();
 });
