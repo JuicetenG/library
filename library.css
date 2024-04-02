@@ -8,7 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ddd6fe;
+  background-color: #d1d5db;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
@@ -19,14 +19,14 @@ body {
 header {
   display: flex;
   align-items: center;
-  width: 640px;
+  width: 660px;
   margin-top: 75px;
   margin-bottom: 15px;
 }
 
 h1 {
   text-align: center;
-  background-color: #a78bfa;
+  background-color: #3b82f6;
   padding: 5px 15px;
   border-radius: 10px;
   box-shadow: 2px 2px 6px;
@@ -39,7 +39,7 @@ h1 {
   padding-left: 5px;
   padding-right: 5px;
   font-weight: bold;
-  background-color: #a78bfa;
+  background-color: #93c5fd;
   border: none;
   border-radius: 6px;
   box-shadow: 2px 2px 6px;
@@ -58,7 +58,7 @@ th {
 
 table, td, th {
   border: none;
-  border-bottom: 1px solid #2e1065;
+  border-bottom: 1px solid #172554;
 }
 
 td, th {
@@ -69,17 +69,17 @@ td, th {
 
 table {
   border-collapse: collapse;
-  box-shadow: 3px 3px 10px #2e1065;
-  border: 1px solid black;
+  box-shadow: 3px 3px 12px #172554;
+  border: 1px solid #172554;
 }
 
 tr:nth-child(even) {
-  background-color: #c4b5fd;
+  background-color: #93c5fd;
 
 }
 
 tr:nth-child(odd) {
-  background-color: #a78bfa;
+  background-color: #3b82f6;
 }
 
 .title-column {
@@ -127,7 +127,7 @@ tr:nth-child(odd) {
 }
 
 .read-status-yes {
-  background-color: #2e1065;
+  background-color: #1e40af;
   color: white;
 }
 
@@ -168,9 +168,9 @@ dialog[open] {
   height: 350px;
   width: 300px;
   border: none;
-  border: 3px solid #4c1d95;
+  border: 3px solid #1e40af;
   border-radius: 10px;
-  background-color: #c4b5fd;
+  background-color: #93c5fd;
 }
 
 .form-container {
@@ -194,14 +194,14 @@ label {
 
 input {
   height: 24px;
-  border: 2px solid #4c1d95;
+  border: 2px solid #1e40af;
   border-radius: 4px;
   padding-left: 4px;
   outline: none;
 }
 
 select {
-  border: 2px solid #4c1d95;
+  border: 2px solid #1e40af;
   border-radius: 4px;
   padding: 2px;
   outline: none;
@@ -237,7 +237,7 @@ select {
 #submitButton {
   margin-bottom: 5px;
   background-color: white;
-  border: 2px solid #4c1d95;
+  border: 2px solid #1e40af;
 }
 
 #closeButton {
@@ -252,7 +252,7 @@ select {
 }
 
 input:valid {
-  border: 2px solid #4c1d95;
+  border: 2px solid #1e40af;
   border-radius: 4px;
 }
 
