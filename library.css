@@ -12,10 +12,6 @@ body {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
-.book-container {
-  margin-bottom: 2em;
-}
-
 header {
   display: flex;
   align-items: center;
@@ -56,11 +52,6 @@ th {
   font-size: 1.1rem;
 }
 
-table, td, th {
-  border: none;
-  border-bottom: 1px solid #172554;
-}
-
 td, th {
   padding: 10px 20px;
   border-left: none;
@@ -70,7 +61,7 @@ td, th {
 table {
   border-collapse: collapse;
   box-shadow: 3px 3px 12px #172554;
-  border: 1px solid #172554;
+  border: 2px solid #172554;
 }
 
 tr:nth-child(even) {
@@ -149,7 +140,7 @@ td:nth-of-type(2) {
   max-width: 10em;
 }
 
-td:nth-of-type(3), td:nth-of-type(4) {
+td:nth-of-type(3) {
   text-align: center;
 }
 

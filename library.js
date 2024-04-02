@@ -85,15 +85,6 @@ const displayBooks = () => {
   }
 }
 
-function checkReadValue() {
-  if(books[i].readStatus === 'yes') {
-    changeRead.classList.add('read-status-yes');
-    changeRead.classList.remove('read-status-no');
-  } else {
-    changeRead.classList.add('read-status-no');
-    changeRead.classList.remove('read-status-yes');
-  }
-}
 Book.prototype.changeReadStatus = function() {
   if(this.readStatus === 'yes') {
     this.readStatus = 'no';
