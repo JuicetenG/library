@@ -13,11 +13,23 @@ let readField = document.querySelector('#bookRead');
 const modal = document.querySelector('#formModal');
 const form = document.querySelector('#bookForm');
 
-function Book(title, author, pageCount, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.pages = pageCount;
-  this.readStatus = readStatus;
+class Book {
+  constructor(title, author, pageCount, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pageCount;
+    this.readStatus = readStatus;
+  }
+
+  changeReadStatus() {
+    if(this.readStatus === 'yes') {
+      this.readStatus = 'no';
+      return this.readStatus = 'no';
+    } else {
+      this.readStatus = 'yes';
+      return 'yes';
+    } 
+  }
 }
 
 function addBook(title, author, pageCount, readStatus) {
@@ -85,7 +97,7 @@ const displayBooks = () => {
   }
 }
 
-Book.prototype.changeReadStatus = function() {
+/*Book.prototype.changeReadStatus = function() {
   if(this.readStatus === 'yes') {
     this.readStatus = 'no';
     return this.readStatus = 'no';
@@ -93,7 +105,7 @@ Book.prototype.changeReadStatus = function() {
     this.readStatus = 'yes';
     return 'yes';
   } 
-}
+}*/
 
 function addHeaders() {
   const headersRow = document.createElement('tr');
