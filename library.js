@@ -97,16 +97,6 @@ const displayBooks = () => {
   }
 }
 
-/*Book.prototype.changeReadStatus = function() {
-  if(this.readStatus === 'yes') {
-    this.readStatus = 'no';
-    return this.readStatus = 'no';
-  } else {
-    this.readStatus = 'yes';
-    return 'yes';
-  } 
-}*/
-
 function addHeaders() {
   const headersRow = document.createElement('tr');
   
